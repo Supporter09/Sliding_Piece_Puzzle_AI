@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 // import styles from '@/styles/Home.module.css'
 import React from "react";
-
 const inter = Inter({ subsets: ['latin'] })
+
 
 const getShuffledPuzzle = () => {
   const values = [0, 1, 2, 3, 4, 5, 6, 7, 8];
