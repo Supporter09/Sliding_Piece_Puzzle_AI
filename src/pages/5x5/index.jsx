@@ -4,38 +4,24 @@ import Image from 'next/image'
 import React, { useState } from "react";
 import styles from './puzzle.module.css'
 
-function InputForm({onInputChange}) {
+export default function Home() {
+    const [matrixInitialState, setMatrixInitialState] = useState(null);
+    const [userMatrix, setUserMatrix] = useState()
+
     const handleInputChange = (e) => {
         const inputValue = e.target.value;
-        onInputChange(inputValue); // Pass the input value to the parent component
+        // onInputChange(inputValue); // Pass the input value to the parent component
         console.log(inputValue);
+        setUserMatrix(inputValue);
     }
 
-    return(
-        <div className={styles.input_box}>
-            <input type="text" required="required" onChange={handleInputChange}></input>   
-        </div>
-    );
-}
-
-function ConfirmButton({ onConfirmClick }) {
     const handleClick = () => {
-        onConfirmClick();
+        setMatrixInitialState(userMatrix)
     }
 
-    return(
-        <div className={styles.container}>
-            <button className={styles.button_style} onClick={handleClick}>Get the solution</button>
-        </div>
-    );
-}
+    // const handleInputChange = (inputValue) => {
 
-export default function Home() {
-    const [matrixInitialState, setMatrixInitialState] = useState(null); 
-    
-    const handleInputChange = (inputValue) => {
-
-    }
+    // }
 
     const handleConfirmClick = () => {
         // Here, you can update matrixInitialState with the processed input value
@@ -48,8 +34,14 @@ export default function Home() {
     return (
         <>
             <h1 className={styles.text}>SET INITIAL STATE</h1>
-            <InputForm onInputChange={handleInputChange} />
-            <ConfirmButton onConfirmClick={handleConfirmClick} />
+            {/* <InputForm onInputChange={handleInputChange} /> */}
+            <div className={styles.input_box}>
+                <input type="text" required="required" onChange={handleInputChange}></input>
+            </div>
+            <div className={styles.container}>
+                <button className={styles.button_style} onClick={handleClick}>Get the solution</button>
+            </div>
+            {/* <ConfirmButton onConfirmClick={handleConfirmClick} /> */}
             {matrixInitialState && (
                 <div>
                     <p>Initial Matrix State:</p>
